@@ -32,6 +32,10 @@ myApp.addFrameworks(
   // { path:'frameworks/sproutcore/themes/empty_theme', combineScripts: true },
   // { path:'frameworks/sproutcore/themes/ace', combineScripts: true },
   
+  // options for bundles (isBundle is false by default, shouldPreload is true by default)
+  // { path: 'bundles/corebundle', isBundle: true, shouldPreload: true } 
+  // { path: 'bundles/mybundle', isBundle: true, bundleDeps: ['corebundle'], shouldPreload: false } 
+  
   // finally, the sources for myApp must be added as well
   { path: 'apps/' + myApp.name }
 );
