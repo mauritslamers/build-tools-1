@@ -1,7 +1,47 @@
+var g = require('../garcon/lib/garçon');
+
+// create a server which will listen on port 8000 by default
+var server = g.Server.create({proxyHost: 'localhost', proxyPort: 8080});
+
+var myApp = g.App.create({
+  name: 'myapp',
+  // adding an application named 'myapp' tells the server to respond to
+  // the /myapp url and to create a myapp.html file when saving
+  
+  theme: 'sc-theme', // what theme to use, will be the class of the body tag
+  htmlHead: '<title>Docentending</title>', // what tags to include in the header of the generated html
+  hasSC: true, // an app will have SC by default, if you don't want this, set to false
+  
+  // a list of frameworks.
+  // every framework has compulsary and optional parameters 
+  // - path: the relative path to this config file
+  // - combineScripts: combine the scripts of this framework in one file
+  // - combineStylesheets: combine the stylesheets of this framework in one file
+  // - isNestedFramework + frameworkNames: if you define isNestedFrameworks, you also have to 
+  //   provide a frameworkNames array of frameworks to include. If you want the entire framework
+  //   to be included, you can just define a nested Framework as a normal framework
+  // - isBundle 
+  frameworks: [
+    { path: 'frameworks/sproutcore/themes/empty_theme'},
+    { path: 'frameworks/sproutcore/themes/standard_theme'},
+    //{ path: 'frameworks/sproutcore/themes/legacy_theme'}, // for SC 1.5
+  	{ path: 'frameworks/ki/frameworks/foundation'},
+    //{ path: 'frameworks/ki'},
+  	{ path: 'frameworks/meetme_fw'},
+  	{ path: 'frameworks/TeXSC'},
+    //{ path: 'frameworks/thothsc'},
+    { path: 'frameworks/Thoth-SC'},
+  	{ path: 'apps/docentending'}
+  ]
+});
+
+server.addApp(myApp);
+server.run();
+/*
 var g = require('./lib/garçon'),
     server, myApp;
     
-// create a server which will listen on port 8000 by default
+
 server = new g.Server();
 
 // adding an application named 'myapp' tells the server to respond to
@@ -49,3 +89,4 @@ myApp.build(function() {
   server.run();
   
 });
+*/
