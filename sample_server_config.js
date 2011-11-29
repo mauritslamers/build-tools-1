@@ -1,7 +1,24 @@
 var g = require('../garcon/lib/garçon');
 
 // create a server which will listen on port 8000 by default
-var server = g.Server.create({proxyHost: 'localhost', proxyPort: 8080});
+// the proxies will be handled in the order defined.
+// so, if you want a catch all proxy, put it in the last position
+var server = g.Server.create({
+  proxies: [ 
+    {
+      prefix: '/images', // what is the url prefix of the request?
+      host: 'localhost', // to what host should be proxied
+      port: 8070, // to what port on the host should be proxied?
+      proxyPrefix: '/' // with what url should the proxy request be prefixed?
+    },
+    { prefix: '/', // this is a catch all proxy 
+      host: 'localhost',
+      port: 8080,
+      proxyPrefix: '/'
+    }
+  ]
+});
+
 
 var myApp = g.App.create({
   name: 'myapp',
@@ -10,7 +27,13 @@ var myApp = g.App.create({
   
   theme: 'sc-theme', // what theme to use, will be the class of the body tag
   htmlHead: '<title>Docentending</title>', // what tags to include in the header of the generated html
-  hasSC: true, // an app will have SC by default, if you don't want this, set to false
+
+  hasSC: true, // an app will have SC by default, if you don't want this, set to false  
+  configSC: {
+    version: '1.4.5', // what version of SC do you want for this app... for future use
+    // what frameworks do you want in your SC?
+    frameworkNames: "bootstrap jquery runtime foundation datastore desktop animation".w() 
+  },
   
   // a list of frameworks.
   // every framework has compulsary and optional parameters 
