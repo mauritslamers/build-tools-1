@@ -26,13 +26,15 @@ var myApp = g.App.create({
   // the /myapp url and to create a myapp.html file when saving
   
   theme: 'sc-theme', // what theme to use, will be the class of the body tag
-  htmlHead: '<title>Docentending</title>', // what tags to include in the header of the generated html
+  htmlHead: '<title>myApp</title>', // what tags to include in the header of the generated html
 
   hasSC: true, // an app will have SC by default, if you don't want this, set to false  
   configSC: {
     version: '1.4.5', // what version of SC do you want for this app... for future use
-    // what frameworks do you want in your SC?
-    frameworkNames: "bootstrap jquery runtime foundation datastore desktop animation".w() 
+    // what frameworks do you want in your SC?, this is standard,
+    // for other frameworks inside SC you need to provide a complete list like this one below...
+    frameworkNames: "bootstrap jquery runtime foundation datastore desktop animation".w(),
+    combineScripts: false
   },
   
   // a list of frameworks.
