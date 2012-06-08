@@ -31,7 +31,7 @@ var myApp = g.App.create({
 
   hasSC: true, // an app will have SC by default, if you don't want this, set to false  
   configSC: {
-    version: '1.4.5', // what version of SC do you want for this app... for future use
+    version: '1.4.5', // what version of SC do you want for this app... not actively used, for future use
     
     // the frameworkNames property contains an array of SC frameworks that you want to have in your app
     // The standard list is shown below, if you need extra frameworks, you need to include the entire list.
@@ -39,9 +39,10 @@ var myApp = g.App.create({
     combineScripts: false // whether you want the javascript files combined as one file
   },
   
-  // a list of frameworks.
-  // every framework has compulsary and optional parameters 
-  // - path: the relative path from this config file
+  // a array of object literals, describing frameworks.
+  // - path: the relative path to the framework from this config file 
+  
+  // optional framework params
   // - combineScripts: combine the scripts of this framework in one file
   // - combineStylesheets: combine the stylesheets of this framework in one file
   // - isNestedFramework + frameworkNames: if you define isNestedFrameworks, you also have to 
