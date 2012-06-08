@@ -1,9 +1,11 @@
-var g = require('../garcon/lib/garçon');
+var g = require('garcon');
 
 // create a server which will listen on port 8000 by default
-// the proxies will be handled in the order defined.
-// so, if you want a catch all proxy, put it in the last position
 var server = g.Server.create({
+// A proxy will be used for any file or request that was not registered in the garcon server
+// during build up. The proxies will be handled in the order defined.
+// If you want a catch all proxy, put it in the last position
+
   proxies: [ 
     {
       prefix: '/images', // what is the url prefix of the request?
@@ -19,7 +21,6 @@ var server = g.Server.create({
   ]
 });
 
-
 var myApp = g.App.create({
   name: 'myapp',
   // adding an application named 'myapp' tells the server to respond to
@@ -31,87 +32,41 @@ var myApp = g.App.create({
   hasSC: true, // an app will have SC by default, if you don't want this, set to false  
   configSC: {
     version: '1.4.5', // what version of SC do you want for this app... for future use
-    // what frameworks do you want in your SC?, this is standard,
-    // for other frameworks inside SC you need to provide a complete list like this one below...
+    
+    // the frameworkNames property contains an array of SC frameworks that you want to have in your app
+    // The standard list is shown below, if you need extra frameworks, you need to include the entire list.
     frameworkNames: "bootstrap jquery runtime foundation datastore desktop animation".w(),
-    combineScripts: false
+    combineScripts: false // whether you want the javascript files combined as one file
   },
   
   // a list of frameworks.
   // every framework has compulsary and optional parameters 
-  // - path: the relative path to this config file
+  // - path: the relative path from this config file
   // - combineScripts: combine the scripts of this framework in one file
   // - combineStylesheets: combine the stylesheets of this framework in one file
   // - isNestedFramework + frameworkNames: if you define isNestedFrameworks, you also have to 
   //   provide a frameworkNames array of frameworks to include. If you want the entire framework
   //   to be included, you can just define a nested Framework as a normal framework
-  // - isBundle 
+  
+  // The options below are valid when the framework is actually a bundle/module
+  // - isBundle: if the framework is actually a module, set this to true.
+  // - shouldPreload: if true, the bundle is preloaded, so included in the main build
+  // - bundleDeps: an array of bundles this bundle depends on
+  
+  // VERY IMPORTANT:
+  // Always include your app as a framework in the list, and preferrable in the last position
+  // the frameworks will be parsed in order
+  
   frameworks: [
     { path: 'frameworks/sproutcore/themes/empty_theme'},
     { path: 'frameworks/sproutcore/themes/standard_theme'},
     //{ path: 'frameworks/sproutcore/themes/legacy_theme'}, // for SC 1.5
   	{ path: 'frameworks/ki/frameworks/foundation'},
     //{ path: 'frameworks/ki'},
-  	{ path: 'frameworks/meetme_fw'},
-  	{ path: 'frameworks/TeXSC'},
-    //{ path: 'frameworks/thothsc'},
-    { path: 'frameworks/Thoth-SC'},
-  	{ path: 'apps/docentending'}
+    { path: 'apps/myapp'}
   ]
 });
 
+// add the app to the server
 server.addApp(myApp);
 server.run();
-/*
-var g = require('./lib/garçon'),
-    server, myApp;
-    
-
-server = new g.Server();
-
-// adding an application named 'myapp' tells the server to respond to
-// the /myapp url and to create a myapp.html file when saving
-myApp = server.addApp({
-  name: 'myapp',
-  theme: 'sc-theme',
-  buildLanguage: 'english'
-});
-
-// myApp needs SproutCore to run
-myApp.addSproutcore();
-
-// add other dependencies
-myApp.addFrameworks(
-  
-  // a third party framework
-  // { path: 'frameworks/calendar' },
-  
-  // the theme you're using
-  { path:'frameworks/sproutcore/themes/standard_theme', combineScripts: true },
-  
-  // if you're on Quilmes and use Ace, uncomment the next 2 lines instead
-  // { path:'frameworks/sproutcore/themes/empty_theme', combineScripts: true },
-  // { path:'frameworks/sproutcore/themes/ace', combineScripts: true },
-  
-  // finally, the sources for myApp must be added as well
-  { path: 'apps/' + myApp.name }
-);
-
-// add some html for inside the <head> tag
-myApp.htmlHead = '<title>My App</title>';
-
-// add some html for inside the <body> tag
-myApp.htmlBody = [
-  '<p id="loading">',
-    'Loading…',
-  '</p>'
-].join('\n');
-
-// build the app
-myApp.build(function() {
-  
-  // run the server
-  server.run();
-  
-});
-*/
