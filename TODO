@@ -1,0 +1,12 @@
+TODO list:
+
+- decision on how to do configuration:
+  - executable/built-in (as it is now
+  - external json files
+
+- cleanup of old code
+- writing tests
+- writing docs
+- adding generators (?)
+- adding per-app automatic Sproutcore versioning (?)
+- npm installer
