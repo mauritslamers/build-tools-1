@@ -1,0 +1,18 @@
+{
+  "name"          : "garcon",
+  "description"   : "Garçon: Node.js buildtools for sproutcore, based on sproutcore",
+  "repository"    : { "type" : "git",
+                      "url"  : "https://github.com/mauritslamers/garcon.git" },
+  "keywords"      : ["node.js", "sproutcore"],
+  "author"        : "Maurits Lamers <mauritslamers@gmail.com>",
+  "main"          : "./lib/garçon.js",
+  "contributors"  : ["Jeff Pittman"],
+  "dependencies"  : {
+    "sc-runtime": "git://github.com/mauritslamers/sc-runtime.git",
+    "canvas" : "0.12.x",
+    "less": "1.3.x",
+    "node-sass": "git://github.com/mauritslamers/node-sass.git"
+  },
+  "version"       : "0.5.0",
+  "engines"       : {"node": "0.6.x"}
+}
