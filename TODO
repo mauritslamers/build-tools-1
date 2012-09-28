@@ -1,5 +1,10 @@
 TODO list:
 
+- finding a way to deal with the build of canvas. node-canvas has a few dependencies
+  which might need to be included as binary in order to make things install easily
+  the node-canvas package doesn't include these deps, but they are required to make
+  the slicing work.
+
 - decision on how to do configuration:
   - executable/built-in (as it is now
   - external json files
