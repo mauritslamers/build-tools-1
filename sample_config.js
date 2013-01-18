@@ -36,7 +36,7 @@ var myApp = g.App.create({
     // the frameworkNames property contains an array of SC frameworks that you want to have in your app
     // The standard list is shown below, if you need extra frameworks, you need to include the entire list.
     frameworkNames: "bootstrap jquery runtime foundation datastore desktop animation".w(),
-    combineScripts: false // whether you want the javascript files combined as one file
+    combineScripts: false // whether you want the javascript files combined as one file, true by default
   },
   
   // a array of object literals, describing frameworks.
@@ -59,11 +59,7 @@ var myApp = g.App.create({
   // the frameworks will be parsed in order
   
   frameworks: [
-    { path: 'frameworks/sproutcore/themes/empty_theme'},
-    { path: 'frameworks/sproutcore/themes/standard_theme'},
-    //{ path: 'frameworks/sproutcore/themes/legacy_theme'}, // for SC 1.5
-  	{ path: 'frameworks/ki/frameworks/foundation'},
-    //{ path: 'frameworks/ki'},
+    { path: 'frameworks/myCoreApp' },
     { path: 'apps/myapp'}
   ]
 });
@@ -71,3 +67,6 @@ var myApp = g.App.create({
 // add the app to the server
 server.addApp(myApp);
 server.run();
+
+// to build the app you just have to call
+myApp.save();
