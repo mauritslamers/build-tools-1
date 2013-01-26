@@ -1,0 +1,21 @@
+{
+  "name"          : "scbuildtools",
+  "description"   : "Node.js buildtools for sproutcore, based on sproutcore",
+  "repository"    : { "type" : "git",
+                      "url"  : "https://github.com/mauritslamers/scbuildtools.git" },
+  "keywords"      : ["node.js", "sproutcore"],
+  "author"        : "Maurits Lamers <mauritslamers@gmail.com>",
+  "main"          : "./scbuildtools.js",
+  "dependencies"  : {
+    "sc-runtime": "git://github.com/mauritslamers/sc-runtime.git",
+    "canvas": "git://github.com/mauritslamers/node-canvas-bin.git",
+    "node-sass": "git://github.com/litek/node-sass.git#e088c93",
+    "compass": "git://github.com/mauritslamers/compass#stable",
+    "uglify-js": "2.2.x"
+  },
+  "version"       : "0.0.1",
+  "bin": {
+    "sproutcore": "./bin/sproutcore"
+  },
+  "engines"       : {"node": "0.8.x"}
+}

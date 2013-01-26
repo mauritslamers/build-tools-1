@@ -1,0 +1,22 @@
+A few major changes to Garcon
+
+Design
+
+the build tools first build a url system in which everything for every app is managed under the apps url,
+which equals the name. From there the app can be served.
+
+Saving will have to transform the urls.
+
+Handlers => singletons, take configuration from files that are given
+
+
+
+CHANGES 
+
+There are a lot of changes regarding Garcon.
+
+- caching is organized as part of a file itself
+- contentType is organized as of a file itself
+- frameworks don't register files in the server, the server will detect an url conforms to
+  a specific framework, then will ask this framework whether it has a file like the url given.
+  The framework then decides what to give back, either a file or a combined file automatically (!)
