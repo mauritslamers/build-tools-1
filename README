@@ -2,12 +2,29 @@ A few major changes to Garcon
 
 Design
 
-the build tools first build a url system in which everything for every app is managed under the apps url,
-which equals the name. From there the app can be served.
+In the original Garcon design the major components of a build tools set were partly intermixed in the code.
+This redesign separates these major components: 
+ 1. application + dependencies on disk, 
+ 2. representation of an application, for example as server representation (development environment), 
+    and saving/deploying representation
 
-Saving will have to transform the urls.
+In addition to these components also transforming functionality is used on two different levels: 
+  - file level: transforming content of single files (coffee script, typescript etc)
+  - framework level: transforming content of sets of files, usually of the same type (sass, compass, less)
 
-Handlers => singletons, take configuration from files that are given
+With the exception of layer 1 everything is a plugin.
+
+
+Plugin:
+
+- Plugins are singletons. 
+- Plugins are defined on the app, and should internally declare on what level they are supposed to work
+- Plugins should take care of caching results if necessary
+- Plugins can be of three types, depending on the level of operation
+   - file level: transforming content of files (coffeescript, typescript)
+   - framework level: transforming content of sets of files (sass, compass, less)
+   - app level: transforming the way the app is represented (saving plugins, serving plugins)
+
 
 
 
@@ -20,3 +37,5 @@ There are a lot of changes regarding Garcon.
 - frameworks don't register files in the server, the server will detect an url conforms to
   a specific framework, then will ask this framework whether it has a file like the url given.
   The framework then decides what to give back, either a file or a combined file automatically (!)
+  
+  
