@@ -1,4 +1,7 @@
-A few major changes to Garcon
+Redesign of the sproutcore buildtools.
+
+WARNING: these buildtools do not work yet and are in constant state of flux as the design is fleshed out 
+and functionality is added.
 
 Design
 
