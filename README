@@ -26,16 +26,5 @@ Plugin:
    - app level: transforming the way the app is represented (saving plugins, serving plugins)
 
 
-
-
-CHANGES 
-
-There are a lot of changes regarding Garcon.
-
-- caching is organized as part of a file itself
-- contentType is organized as of a file itself
-- frameworks don't register files in the server, the server will detect an url conforms to
-  a specific framework, then will ask this framework whether it has a file like the url given.
-  The framework then decides what to give back, either a file or a combined file automatically (!)
   
   
