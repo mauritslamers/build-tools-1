@@ -1,5 +1,5 @@
 This directory contains the default plugins for the build tools
-There is a default server plugin, which generates the urls and files for the development environment,
+There is a default devserver plugin, which serves the files for the development environment,
 and there are a few saving plugins, depending on the requirements of the saving procedure
 
 Both the server and the saving plugins need to interact with the app API to get access to the files.
