@@ -29,5 +29,16 @@ Plugin:
    - app level: transforming the way the app is represented (saving plugins, serving plugins)
 
 
+Project layout
+
+The project layout is more or less the same, only the configuration files have changed.
+The root of the project should contain a project.json file (see example).
+A framework can also contain a json file (name should be the same as the framework name), which contains extra information
+about the framework, including dependencies (!).
   
-  
+Commands
+
+There is essentially one command: "sproutcore [action]"
+The default action of the command, when executed in the project folder is to start the dev server.
+Anything else should be defined. Currently only build is recognised to start a build.
+Generators can easily be added later (if necessary).
