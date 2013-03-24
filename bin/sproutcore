@@ -1,0 +1,18 @@
+#!/usr/bin/env node
+
+var util = require('util'),
+    path = require('path'),
+    args = process.argv,
+    curPath = process.env.PWD,
+    buildtools = require('../buildtools');
+
+util.puts("Sproutcore NodeJS BuildTools v0.0.1");
+util.puts("");
+
+var projectConf = buildtools.readConfig(path.join(curPath,"project.json"));
+if(!projectConf){ // error messages are being created by readConfig
+   return;
+}
+
+
+util.log("args: " + util.inspect(args));
