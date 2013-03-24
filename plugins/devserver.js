@@ -1,7 +1,8 @@
 // Default server plugin, transforms incoming requests to 
 var SC = require('sc-runtime');
-var tools = require('./tools');
-var HttpFile = require('../http_file');
+var tools = require('../lib/tools');
+var HttpFile = require('../lib/html_file');
+var config = require('../lib/config');
 //// server interface, should be sort of the same as the file content interface
 // _getFileCbs: null,
 // 

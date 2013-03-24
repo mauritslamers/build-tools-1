@@ -4,7 +4,9 @@ var util = require('util'),
     path = require('path'),
     args = process.argv,
     curPath = process.env.PWD,
-    buildtools = require('../buildtools');
+    buildtools = require('../buildtools'),
+    command = args[2],
+    runtype = (command === "build")? "save": "server";
 
 util.puts("Sproutcore NodeJS BuildTools v0.0.1");
 util.puts("");
@@ -15,4 +17,6 @@ if(!projectConf){ // error messages are being created by readConfig
 }
 
 
+buildtools.setup(projectConf,runtype);
+//buildtools.start()
 util.log("args: " + util.inspect(args));

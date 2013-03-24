@@ -3,6 +3,7 @@ var tools = require('./lib/tools');
 var baseConfig = require('./lib/config');
 var File = require('./lib/file');
 var Framework = require('./lib/Framework');
+var App = require('./lib/app');
 
 var buildTools = SC.Object.create({
   readConfig: function(path){
@@ -36,11 +37,15 @@ var buildTools = SC.Object.create({
   
   plugins: null, // place to hook up the active plugin objects
   
+  runtype: null, // place to put the runtype
+  
   setup: function(projectConfig,runtype){
     // so, first plugins
     // we first init plugins from the projectConfig
     // then we see whether they replace default ones
+    this.set('runtype',runtype);
     var plugins = [];
+    var apps = [];
     var defPlugins = baseConfig.defaultPlugins;
     if(projectConfig.plugins && projectConfig.plugins instanceof Array){
       projectConfig.plugins.forEach(function(pname){
@@ -66,7 +71,7 @@ var buildTools = SC.Object.create({
         var hasCustomServer = plugins.findProperty('type','server');
         if(hasCustomServer) this.set('devserver',hasCustomServer);
         else {
-          this.set('devserver',require(defPlugins.devserver));
+          this.set('devserver',require(defPlugins.server));
         } 
       }
     }
@@ -86,8 +91,19 @@ var buildTools = SC.Object.create({
       var plugin = customSettings? p.create(customSettings): p.create();
       plugins.push(plugin);      
     });
-    
     this.set('plugins',plugins);
+    
+    // now setup apps
+    if(projectConfig.apps && projectConfig.apps instanceof Array){
+      projectConfig.apps.forEach(function(a){
+        apps.push(App.create(a));
+      });
+    }
+    this.set('apps',apps);
+  },
+  
+  start: function(){
+    
   }
 
 });
