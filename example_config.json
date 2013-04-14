@@ -9,7 +9,7 @@
         "sproutcore-sass": {
           
         }
-      }
+      },
       "htmlHead": "<title>MyApp</title>",
       "htmlScripts": "",
       "urlPrefix": "", 
@@ -28,32 +28,6 @@
       ]
     }
   ],
-  proxies: [
+  "proxies": [
   ]
 }
-
-/*
-var kandidaten = g.App.create({
-  name: 'toelatingskandidaten',
-  theme: 'sc-theme',
-  htmlBody: stdHtmlBody,
-  htmlHead: '<title>Meetme Kandidaten</title>',
-  htmlScripts: shouldBuild? htmlBuildScripts: "",
-  urlPrefix: shouldBuild? '': '/',
-  hasSC: true,
-  configSC: {
-    nodifyScripts: false,
-    version: "1.4.5"
-  },
-  frameworks: [
-    { path: 'frameworks/sproutcore/themes/empty_theme'},
-    { path: 'frameworks/sproutcore/themes/standard_theme'},
-    { path: 'frameworks/more_cowbell'},
-  	{ path: 'frameworks/ki/frameworks/foundation', combineScripts: true},
-  	{ path: 'frameworks/conflict_resolver'},
-  	{ path: 'frameworks/core_meetme'},
-  	{ path: 'frameworks/core_kandidaten'},
-  	{ path: 'apps/toelatingskandidaten'}
-  ]  
-});
-*/

@@ -4,19 +4,29 @@ var baseConfig = require('./lib/config');
 var File = require('./lib/file');
 var Framework = require('./lib/Framework');
 var App = require('./lib/app');
+var Project = require('./lib/project');
+var jsonschema = require('jsonschema');
 
 var buildTools = SC.Object.create({
+  
+  Project: Project,
+  
   readConfig: function(path){
     //tools.log("trying to read: " + path);
+    
     try { 
       // on purpose not using require() here, 
       // because we want to be able to detect syntax issues
       var proj = tools.fs.readFileSync(path);
       var projconfig = JSON.parse(proj);
+      var validated = jsonschema.validate(projconfig,baseConfig.SCHEMAS.projectconfig);
+      if(!validated || validated.length > 0){
+        throw new Error();
+      }
     }
     catch(e){
       if(e instanceof SyntaxError){
-        tools.puts("An syntax error was detected in your project config file.");
+        tools.puts("An syntax error was detected in your project config file. filepath: " + path);
         return false;
       }
       else if(e.code === "ENOENT"){

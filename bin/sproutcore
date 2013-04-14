@@ -11,12 +11,8 @@ var util = require('util'),
 util.puts("Sproutcore NodeJS BuildTools v0.0.1");
 util.puts("");
 
-var projectConf = buildtools.readConfig(path.join(curPath,"project.json"));
-if(!projectConf){ // error messages are being created by readConfig
-   return;
-}
+var project = buildtools.Project.create({
+  path: curPath
+});
 
-
-buildtools.setup(projectConf,runtype);
-//buildtools.start()
-util.log("args: " + util.inspect(args));
+//util.log("args: " + util.inspect(args));
