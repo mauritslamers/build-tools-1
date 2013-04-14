@@ -37,7 +37,7 @@ module.exports = SC.Object.extend({
     }
   },
   
-  process: function(apps,request,response){
+  process: function(app,request,response){
     var url, filteredApps, app;
     if(request.method !== "GET") return false;
     url = request.url.split("/");

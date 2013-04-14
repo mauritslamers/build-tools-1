@@ -3,6 +3,7 @@
     {
       "name": "myApp",
       "theme": "sc-theme",
+      "title": "myApp",
       "path": "apps/myApp",
       "plugins": {
         "sproutcore-sass": {
@@ -26,6 +27,8 @@
         }
       ]
     }
+  ],
+  proxies: [
   ]
 }
 

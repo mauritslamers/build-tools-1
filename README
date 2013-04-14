@@ -19,14 +19,15 @@ With the exception of layer 1 everything is a plugin.
 
 
 Plugin:
-
-- Plugins are singletons. 
+ 
 - Plugins are defined on the app, and should internally declare on what level they are supposed to work
 - Plugins should take care of caching results if necessary
 - Plugins can be of three types, depending on the level of operation
    - file level: transforming content of files (coffeescript, typescript)
    - framework level: transforming content of sets of files (sass, compass, less)
    - app level: transforming the way the app is represented (saving plugins, serving plugins)
+- Plugins should define a JSON schema of their configurable properties. Before the plugin instance is created the configuration will 
+  be checked against this schema.
 
 
 Project layout

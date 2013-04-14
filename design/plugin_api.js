@@ -1,6 +1,6 @@
 //Plugin API: 
 
-SC.Object.extend({
+var plugin = SC.Object.extend({
   name: 'name',
   type: null, // one of "file","framework","server","save"
   filetype: "", // in case of type file or framework, the file type this plugin should be called for
@@ -19,6 +19,7 @@ SC.Object.extend({
     and sends the result in the callback. The plugin is given the file object, so it can retrieve the 
     content, path and status (whether it changed since the last time) of the file in order to handle 
     caching (if required).
+    This plugin will be given one instance per application
 
     type === "framework" =>   
     process(files,callback), where callback arguments are (err,result).
@@ -30,6 +31,7 @@ SC.Object.extend({
     In this way, it can filter out files, as this is the case in _theme.css files,
     which exist on disk but should not be included in the actual theme, add new files (most notably virtual ones, 
     not necessarily of the same type), as well as order the files to achieve a specific load order.
+    This plugin will be given one instance per framework.
     
     ==
     The Server and Save plugin types
@@ -43,12 +45,13 @@ SC.Object.extend({
     has been moved to the server and save plugins. 
     As there are certain standard parts in the HTML to build, a special HtmlFile API exists to make 
     the generation of the HTML base file easier.
-    
+    The server and save plugins are given one instance per app, and are created with the app as property
+    of the plugin
     
     type === "server" => 
-    process(apps,request,response)
     
-    apps is an array of registed apps, of which the server should figure out what to serve.
+    process(request,response)
+    
     request is the incoming request,
     response is the server response
     
@@ -56,11 +59,12 @@ SC.Object.extend({
     request will be proxied
     
     type === "save" =>
-    process(apps,callback)
     
-    apps is an array of registered apps, which the plugin should save. Just as with the server plugin, the 
+    process(callback)
+    
+    The app object is available as property on the plugin, and the plugin should save the app on request. Just as with the server plugin, the 
     save plugin can use the HtmlFile API.
-    The callback should be given the argyments (err,finished), where finished is true when the process is done.
+    The callback should be given the arguments (err,finished), where finished is true when the process is done.
 
   */
   process: function(item,callback){
@@ -68,3 +72,13 @@ SC.Object.extend({
   }
   
 });
+
+/* 
+  You will have to provide a JSON schema of the plugin configurables 
+  You can extend the default plugin schema, by referring to module.plugin.SCHEMA
+*/
+
+
+plugin.SCHEMA = {
+  
+}
