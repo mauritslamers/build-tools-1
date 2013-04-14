@@ -1,13 +1,6 @@
 //Plugin API: 
 
-var plugin = SC.Object.extend({
-  name: 'name',
-  type: null, // one of "file","framework","server","save"
-  filetype: "", // in case of type file or framework, the file type this plugin should be called for
-                // value should be "script","stylesheet" or "resource"
-  extension: "", // in case of file, setting an extension will be added to the list of extensions for the type in filetype
-  before: null, // array of plugins this plugin should always be handled before
-  after: null, // array of plugins which this plugin should always be after
+var Plugin = SC.Object.extend({
   
   /*
     process is called for a plugin action. The arguments depend on the plugin type.
@@ -73,12 +66,21 @@ var plugin = SC.Object.extend({
   
 });
 
+
+
+
+Plugin.name = "name";
+Plugin.type = ""; // one of file, framework, server, save
+Plugin.filetype = ""; // one of script, stylesheet or resource
+Plugin.extension = ""; // in case of file setting an extension will be added to the list of extensions for the type in filetype
+Plugin.before = []; // array of plugin names this plugin should never be after
+Plugin.after = []; // array of plugin names this plugin should never be before
+
 /* 
   You will have to provide a JSON schema of the plugin configurables 
   You can extend the default plugin schema, by referring to module.plugin.SCHEMA
 */
 
-
-plugin.SCHEMA = {
+Plugin.SCHEMA = {
   
-}
+};
