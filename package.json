@@ -8,10 +8,9 @@
   "main"          : "./buildtools.js",
   "dependencies"  : {
     "sc-runtime": "git://github.com/mauritslamers/sc-runtime.git",
-    "canvas": "git://github.com/mauritslamers/node-canvas-bin.git",
-    "node-sass": "git://github.com/litek/node-sass.git#e088c93",
-    "compass": "git://github.com/mauritslamers/compass#stable",
-    "uglify-js": "2.2.x"
+    "http-proxy": "0.10.x",
+    "uglify-js": "2.2.x",
+    "jsonschema": "0.3.x"
   },
   "version"       : "0.0.1",
   "bin": {
