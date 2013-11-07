@@ -9,15 +9,15 @@
   "contributors"  : ["Jeff Pittman"],
   "dependencies"  : {
     "sc-runtime": "git://github.com/mauritslamers/sc-runtime.git",
-    "canvas": "git://github.com/mauritslamers/node-canvas-bin.git",
+    "canvas": "git://github.com/mauritslamers/node-canvas-bin.git#node-v0.10",
     "less": "1.3.x",
-    "node-sass": "0.2.6",
+    "node-sass": ">0.2.6",
     "compass": "git://github.com/mauritslamers/compass#stable",
     "uglify-js": "2.2.x"
   },
-  "version"       : "0.5.1",
+  "version"       : "0.6.0",
   "bin": {
     "sproutcore": "./bin/sproutcore"
   },
-  "engines"       : {"node": "0.8.x"}
+  "engines"       : {"node": "0.10.x"}
 }
